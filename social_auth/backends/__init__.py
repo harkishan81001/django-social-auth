@@ -11,6 +11,7 @@ enabled.
 """
 from urllib2 import Request, HTTPError
 from urllib import urlencode
+from importlib import import_module
 
 from openid.consumer.consumer import Consumer, SUCCESS, CANCEL, FAILURE
 from openid.consumer.discover import DiscoveryFailure
@@ -27,7 +28,6 @@ except ImportError:
         from django.utils import simplejson
 
 from django.contrib.auth import authenticate
-from django.utils.importlib import import_module
 
 from social_auth.models import UserSocialAuth
 from social_auth.utils import setting, model_to_ctype, ctype_to_model, \
