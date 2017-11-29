@@ -16,9 +16,10 @@ if setting('SOCIAL_AUTH_MODELS') in (None, 'social_auth.db.django_models'):
         username_field = None
 
     fieldnames = ('first_name', 'last_name', 'email') + (username_field,)
-    all_names = _User._meta.get_all_field_names()
-    user_search_fields = ['user__' + name for name in fieldnames
-                                if name in all_names]
+    all_names = _User._meta.get_fields()
+    user_search_fields = [
+        'user__' + name for name in fieldnames if
+        name in all_names]
 
     class UserSocialAuthOption(admin.ModelAdmin):
         """Social Auth user options"""

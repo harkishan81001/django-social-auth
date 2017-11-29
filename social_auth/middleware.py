@@ -2,12 +2,13 @@
 from django.conf import settings
 from django.contrib.messages.api import error, MessageFailure
 from django.shortcuts import redirect
+from django.utils.deprecation import MiddlewareMixin
 
 from social_auth.exceptions import SocialAuthBaseException
 from social_auth.utils import backend_setting, get_backend_name
 
 
-class SocialAuthExceptionMiddleware(object):
+class SocialAuthExceptionMiddleware(MiddlewareMixin):
     """Middleware that handles Social Auth AuthExceptions by providing the user
     with a message, logging an error, and redirecting to some next location.
 
